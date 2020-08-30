@@ -1,0 +1,136 @@
+<div id="transcriptContent">
+  <div id="cardsBlock" *ngIf="transcriptionDate; else elseBlock">
+    <div id="realTranscription" class="customCards">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Real</mat-card-title>
+          <div id="matchBox">
+            <span>{{ realMatching | number: "1.2-2" }}%</span>
+            <mat-progress-spinner
+              class="example-margin"
+              diameter="24"
+              strokeWidth="13"
+              mode="determinate"
+              color="primary"
+              [value]="realMatching"
+            >
+            </mat-progress-spinner>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="table-responsive">
+            <table
+              mat-table
+              [dataSource]="realDataSource"
+              class="mat-elevation-z0"
+            >
+              <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef width="70">Time</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.timeFrom }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="speaker">
+                <th mat-header-cell *matHeaderCellDef width="70">Speaker</th>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="sentence">
+                <th mat-header-cell *matHeaderCellDef>Sentence</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.sentence }}
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="realColumns; sticky: true"
+              ></tr>
+              <tr
+                mat-row
+                [ngClass]="{ matched: row.matched }"
+                [matTooltip]="row.tooltipMessage"
+                (mouseover)="
+                  highlightExpected(row);
+                  ({ background: 'rgba(90, 90, 113, 0.4)' })
+                "
+                (mouseout)="hideHighlightExpected()"
+                *matRowDef="let row; let i = index; columns: realColumns"
+              ></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div id="expectedTranscription" class="customCards">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Expected</mat-card-title>
+          <div id="matchBox">
+            <span>{{ expectedMatching | number: "1.2-2" }}%</span>
+            <mat-progress-spinner
+              class="example-margin"
+              diameter="24"
+              strokeWidth="13"
+              mode="determinate"
+              color="primary"
+              [value]="expectedMatching"
+            >
+            </mat-progress-spinner>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="table-responsive">
+            <table
+              mat-table
+              [dataSource]="expectedDataSource"
+              class="mat-elevation-z0"
+            >
+              <ng-container matColumnDef="order">
+                <th mat-header-cell *matHeaderCellDef width="70">Line</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.order + 1 }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="rep">
+                <th mat-header-cell *matHeaderCellDef width="70">Speaker</th>
+                <td mat-cell *matCellDef="let element">Rep:</td>
+              </ng-container>
+
+              <ng-container matColumnDef="sentence">
+                <th mat-header-cell *matHeaderCellDef>Sentence</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.sentence }}
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="expectedColumns; sticky: true"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; let i = index; columns: expectedColumns"
+                [ngClass]="{ matched: row.matched }"
+                [ngStyle]="
+                  i === highlight && { background: 'rgba(90, 90, 113, 0.4)' }
+                "
+              ></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div id="hasNoTranscriptSelected">
+      <img src="../../assets/img/image.svg" alt="" />
+      <h2>Select pending</h2>
+      <p>
+        Select a call from top menu and a transcript analysis will be shown here
+      </p>
+    </div>
+  </ng-template>
+</div>

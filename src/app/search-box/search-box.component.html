@@ -1,0 +1,50 @@
+<div id="searchBoxContent">
+  <mat-form-field id="agentSelectBox" floatLabel="never">
+    <mat-icon>supervised_user_circle</mat-icon>
+    <mat-label> Agent </mat-label>
+    <mat-select (selectionChange)="selectAgent($event.value)">
+      <mat-option *ngFor="let agent of agents" [value]="agent.agent_id">
+        {{ agent.full_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field id="callTypeSelectBox" floatLabel="never">
+    <mat-icon>filter_list</mat-icon>
+    <mat-label> All </mat-label>
+    <mat-select (selectionChange)="selectCallType($event.value)">
+      <mat-option
+        *ngFor="let callType of callTypes"
+        [value]="callType.calltype_id"
+      >
+        {{ callType.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field id="callSelectBox" floatLabel="never">
+    <mat-icon>phone</mat-icon>
+    <mat-label> Call </mat-label>
+    <mat-select
+      (selectionChange)="selectCall($event.value)"
+      [disabled]="!selectedAgent"
+    >
+      <mat-option *ngFor="let call of calls" [value]="call.call_id">
+        {{ call.call_start_time }} - {{ call.customer[0].full_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div id="sliderBox" *ngIf="selectedCall">
+    <mat-slider
+      #slider
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      [thumbLabel]="true"
+      value="38"
+      (change)="setSensitivity($event.value)"
+      [(ngModel)]="sensitivity"
+      [vertical]="vertical"
+    >
+    </mat-slider>
+    <span>{{ sensitivity }}%</span>
+  </div>
+</div>

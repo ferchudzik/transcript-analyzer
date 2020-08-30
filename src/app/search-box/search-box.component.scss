@@ -1,0 +1,66 @@
+#searchBoxContent {
+  padding: 9px 32px;
+  display: flex;
+  gap: 8px;
+  background: #efeff1;
+
+  .mat-form-field {
+    background: rgba(51, 51, 51, 0.06);
+    border-radius: 4px 4px 0px 0px;
+    height: 38px;
+
+    .mat-form-field-wrapper {
+      padding: 10px !important ;
+      mat-select {
+        &.ng-star-inserted {
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+
+      mat-label {
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.54);
+
+        mat-icon {
+          color: #000000;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  #agentSelectBox,
+  #callTypeSelectBox {
+    width: 172px;
+  }
+
+  #callSelectBox {
+    width: 316px;
+  }
+
+  #sliderBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 38px;
+
+    mat-slider {
+      flex: 1;
+      .mat-slider-wrapper {
+        background: #5a5a71;
+        opacity: 0.24;
+      }
+    }
+
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 28px;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}

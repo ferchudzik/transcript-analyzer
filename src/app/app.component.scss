@@ -1,0 +1,9 @@
+#appContent,
+#bodyContent,
+#transcriptCard,
+app-transcript-card {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

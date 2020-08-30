@@ -1,0 +1,26 @@
+[
+  {
+    "calltype_id": "155519617ab6",
+    "name": "BFQ"
+  },
+  {
+    "calltype_id": "99cb04868b9e",
+    "name": "CCAT"
+  },
+  {
+    "calltype_id": "3becd45f709f",
+    "name": "Commitment"
+  },
+  {
+    "calltype_id": "3e247b117348",
+    "name": "Language"
+  },
+  {
+    "calltype_id": "0e655f55ea30",
+    "name": "Skills"
+  },
+  {
+    "calltype_id": "f44785ceA",
+    "name": "Real Work"
+  }
+]
